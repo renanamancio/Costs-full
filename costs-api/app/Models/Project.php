@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['name', 'budget', 'cost', 'user_id', 'category_id'])]
 class Project extends Model
 {
     /** @use HasFactory<\Database\Factories\ProjectFactory> */
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, HasApiTokens;
 
     public function category(){
         //Esta classe (project) pertence a category

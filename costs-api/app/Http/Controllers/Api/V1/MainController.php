@@ -195,13 +195,15 @@ class MainController extends Controller
         $validateData = $request->validate([
             'name' => 'required|string|max:100|unique:users,name',
             'email' => 'required|string|max:50|unique:users,email',
+            'password' => 'required|string|min:6|max:20',
+            'authorization' => 'required|string|in:user,admin'
         ]);
 
-        $category = Category::create($validateData);
+        $user = user::create($validateData);
 
         return ApiResponse::success(
-            new CategoryResource($category),
-            'Category created successfully.',
+            new UserResource($user),
+            'User created successfully.',
             201
         );
     }
